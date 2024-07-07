@@ -15,6 +15,12 @@ class HelloController
     #[Route('/dinossauro')]
     function dinossauro(): Response
     {
-        return new Response('teste ' . uniqid());
+        return new Response('dinossauro ' . uniqid());
+    }
+
+    #[Route('/mamiferos')]
+    function mamiferos(): Response
+    {
+        return new Response('mamiferos ' . uniqid());
     }
 }
