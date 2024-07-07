@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-class HelloController
+use function Symfony\Component\String\u;
+
+class HelloController extends AbstractController
 {
     #[Route('/')]
     function index(): Response
@@ -12,56 +15,19 @@ class HelloController
         return new Response('Teste de sistema');
     }
 
-    #[Route('/dinossauro')]
-    function dinossauro(): Response
+    #[Route('/animal/{nome}/{raca}')]
+    function animal(string $nome = null, string $raca = null): Response
     {
-        return new Response('dinossauro ' . uniqid());
-    }
+        $nome = str_replace("-"," ", $nome);
+        $nome = u($nome)->title(true);
 
-    #[Route('/mamiferos')]
-    function mamiferos(): Response
-    {
-        return new Response('mamiferos ' . uniqid());
-    }
+        $raca = str_replace("-"," ", $raca);
+        $raca = u($raca)->title(true);
 
-    #[Route('/invertebrados')]
-    function invertebrados(): Response
-    {
-        return new Response('invertebrados ' . uniqid());
-    }
-    #[Route('/insetos')]
-    function insetos(): Response
-    {
-        return new Response('insetos ' . uniqid());
-    }
-
-    #[Route('/aves')]
-    function aves(): Response
-    {
-        return new Response('aves ' . uniqid());
-    }
-
-    #[Route('/felinos')]
-    function felinos(): Response
-    {
-        return new Response('felinos ' . uniqid());
-    }
-
-    #[Route('/caninos')]
-    function caninos(): Response
-    {
-        return new Response('caninos ' . uniqid());
-    }
-
-    #[Route('/roedores')]
-    function roedores(): Response
-    {
-        return new Response('roedores ' . uniqid());
-    }
-
-    #[Route('/nadadores')]
-    function nadadores(): Response
-    {
-        return new Response('nadadores ' . uniqid());
+        return $this->render('/animal.html.twig', [
+            'nome' => $nome,
+            'raca' => $raca
+        ]);
+        // return new Response($nome.' - ' . uniqid());
     }
 }
