@@ -40,4 +40,10 @@ class HelloController
     {
         return new Response('aves ' . uniqid());
     }
+
+    #[Route('/felinos')]
+    function felinos(): Response
+    {
+        return new Response('felinos ' . uniqid());
+    }
 }
