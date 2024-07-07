@@ -29,4 +29,9 @@ class HelloController
     {
         return new Response('invertebrados ' . uniqid());
     }
+    #[Route('/insetos')]
+    function insetos(): Response
+    {
+        return new Response('insetos ' . uniqid());
+    }
 }
