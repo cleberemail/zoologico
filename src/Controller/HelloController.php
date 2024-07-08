@@ -24,7 +24,7 @@ class HelloController extends AbstractController
         $raca = str_replace("-"," ", $raca);
         $raca = u($raca)->title(true);
 
-        return $this->render('/animal.html.twig', [
+        return $this->render('/homepage/animal.html.twig', [
             'nome' => $nome,
             'raca' => $raca
         ]);
